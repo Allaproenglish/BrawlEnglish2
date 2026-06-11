@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Тренажёр Brawl English — для iPhone</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <title>Тренажёр Brawl English — детский шрифт, всё работает</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,17 +20,14 @@
         }
 
         body {
-            font-family: 'Lilita One', cursive;
-            background: #3b0a6b; /* запасной цвет */
+            font-family: 'Nunito', sans-serif;
+            background: #3b0a6b;
             background-image: url('https://i.pinimg.com/736x/cd/56/9b/cd569b65ab307352e0385e68f6b84eaf.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: scroll; /* важно для iOS */
-            display: -webkit-flex;
+            background-attachment: scroll;
             display: flex;
-            -webkit-justify-content: center;
             justify-content: center;
-            -webkit-align-items: center;
             align-items: center;
             padding: 15px;
         }
@@ -54,24 +51,15 @@
             box-shadow: 0 15px 30px rgba(255, 200, 0, 0.4);
             padding: 25px 15px;
             border: 4px solid #ffcc00;
-            -webkit-animation: floatIn 0.8s ease;
             animation: floatIn 0.8s ease;
             margin: auto;
         }
 
-        @-webkit-keyframes floatIn {
-            0% { -webkit-transform: translateY(30px); opacity: 0; }
-            100% { -webkit-transform: translateY(0); opacity: 1; }
-        }
         @keyframes floatIn {
             0% { transform: translateY(30px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
 
-        @-webkit-keyframes chestOpen {
-            0% { -webkit-transform: scale(0.8) rotate(-3deg); opacity: 0; }
-            100% { -webkit-transform: scale(1) rotate(0); opacity: 1; }
-        }
         @keyframes chestOpen {
             0% { transform: scale(0.8) rotate(-3deg); opacity: 0; }
             100% { transform: scale(1) rotate(0); opacity: 1; }
@@ -81,15 +69,17 @@
             text-align: center;
             color: #ffcc00;
             font-size: clamp(28px, 8vw, 36px);
+            font-weight: 800;
             text-shadow: 2px 2px 0 #8b5cf6, 4px 4px 0 #4a0072;
             margin-bottom: 5px;
-            -webkit-text-stroke: 0.5px #fff;
+            letter-spacing: 1px;
         }
 
         .subtitle {
             text-align: center;
             color: #ffe082;
             font-size: clamp(14px, 4vw, 18px);
+            font-weight: 700;
             margin-bottom: 20px;
             background: rgba(138, 43, 226, 0.6);
             padding: 6px 20px;
@@ -114,6 +104,7 @@
         .welcome-section .hint {
             color: #ffecb3;
             font-size: clamp(14px, 4vw, 18px);
+            font-weight: 600;
             margin-bottom: 12px;
             text-shadow: 1px 1px 0 #4a148c;
         }
@@ -123,12 +114,13 @@
             border: 3px solid #ffcc00;
             border-radius: 30px;
             font-size: 16px;
+            font-weight: 600;
             width: 80%;
             max-width: 250px;
             text-align: center;
             background: #4a148c;
             color: #ffd700;
-            font-family: 'Lilita One', cursive;
+            font-family: 'Nunito', sans-serif;
             outline: none;
             margin-bottom: 15px;
             -webkit-appearance: none;
@@ -141,32 +133,29 @@
         }
 
         .start-btn {
-            background: -webkit-linear-gradient(top, #ffcc00, #ff9900);
             background: linear-gradient(180deg, #ffcc00, #ff9900);
             border: none;
             color: #3e1f00;
-            font-weight: bold;
+            font-weight: 800;
             font-size: clamp(20px, 5vw, 24px);
             padding: 12px 30px;
             border-radius: 30px;
             cursor: pointer;
             box-shadow: 0 6px 0 #b35900;
-            font-family: 'Lilita One', cursive;
+            font-family: 'Nunito', sans-serif;
             text-transform: uppercase;
             transition: 0.2s;
-            -webkit-appearance: none;
-            appearance: none;
+            letter-spacing: 1px;
         }
 
         .start-btn:active {
-            -webkit-transform: translateY(3px);
             transform: translateY(3px);
             box-shadow: 0 3px 0 #b35900;
         }
 
         .greeting {
             font-size: clamp(20px, 6vw, 28px);
-            font-weight: bold;
+            font-weight: 700;
             color: #ffd700;
             margin: 15px 0;
             display: none;
@@ -180,6 +169,7 @@
             text-align: center;
             color: #ffe082;
             font-size: 16px;
+            font-weight: 600;
             margin-bottom: 15px;
         }
 
@@ -196,7 +186,6 @@
         }
 
         .question-screen.animate-question {
-            -webkit-animation: chestOpen 0.4s ease;
             animation: chestOpen 0.4s ease;
         }
 
@@ -214,19 +203,18 @@
 
         .question-text {
             font-size: clamp(18px, 5vw, 22px);
+            font-weight: 700;
             margin-bottom: 15px;
             color: white;
             text-shadow: 1px 1px 0 #000;
             text-align: center;
+            line-height: 1.4;
         }
 
         .options {
-            display: -webkit-flex;
             display: flex;
-            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
             gap: 10px;
-            -webkit-justify-content: center;
             justify-content: center;
         }
 
@@ -237,17 +225,16 @@
             border: 2px solid #ff6f00;
             cursor: pointer;
             font-size: clamp(14px, 4vw, 18px);
+            font-weight: 700;
             color: #3e1f00;
             text-shadow: 1px 1px 0 white;
-            display: -webkit-flex;
             display: flex;
-            -webkit-align-items: center;
             align-items: center;
             gap: 6px;
             box-shadow: 0 4px 0 #bf360c;
             transition: 0.2s;
-            -webkit-user-select: none;
             user-select: none;
+            line-height: 1.3;
         }
 
         .options label:active { background: #ffecb3; }
@@ -267,7 +254,9 @@
             border-radius: 15px;
             color: white;
             font-size: 14px;
+            font-weight: 600;
             text-align: center;
+            line-height: 1.5;
         }
 
         .question-screen.wrong-highlight .feedback,
@@ -277,62 +266,54 @@
         .explanation-text { color: #ffcdd2; margin-top: 4px; }
 
         .nav-buttons {
-            display: -webkit-flex;
             display: flex;
-            -webkit-justify-content: center;
             justify-content: center;
             gap: 10px;
             margin: 15px 0;
-            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
         }
 
         .btn {
-            background: -webkit-linear-gradient(top, #ffcc00, #ff9900);
             background: linear-gradient(180deg, #ffcc00, #ff9900);
             border: none;
             color: #3e1f00;
             font-size: clamp(16px, 4vw, 20px);
+            font-weight: 800;
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 5px 0 #b35900;
-            font-family: 'Lilita One', cursive;
+            font-family: 'Nunito', sans-serif;
             text-transform: uppercase;
             transition: 0.2s;
             white-space: nowrap;
-            -webkit-appearance: none;
-            appearance: none;
+            letter-spacing: 1px;
         }
 
         .btn:active {
-            -webkit-transform: translateY(3px);
             transform: translateY(3px);
             box-shadow: 0 2px 0 #b35900;
         }
 
         .btn:disabled {
             opacity: 0.5;
-            -webkit-transform: none;
             transform: none;
             box-shadow: 0 4px 0 #7a4a00;
         }
 
         .btn.check-btn {
-            background: -webkit-linear-gradient(top, #7c4dff, #651fff);
             background: linear-gradient(180deg, #7c4dff, #651fff);
             color: white;
         }
 
         .btn.reset-btn {
-            background: -webkit-linear-gradient(top, #9575cd, #512da8);
             background: linear-gradient(180deg, #9575cd, #512da8);
             color: white;
         }
 
         .result {
             font-size: clamp(20px, 6vw, 24px);
-            font-weight: bold;
+            font-weight: 800;
             color: #ffd700;
             background: #4a148c;
             padding: 12px 20px;
@@ -344,6 +325,7 @@
 
         .result-message {
             font-size: clamp(16px, 5vw, 20px);
+            font-weight: 600;
             color: #ffcc00;
             margin-top: 8px;
             text-align: center;
@@ -360,7 +342,13 @@
             color: #3e1f00;
         }
 
-        .reading-task h2 { font-size: clamp(18px, 5vw, 22px); color: #4a148c; text-shadow: 1px 1px 0 white; }
+        .reading-task h2 {
+            font-size: clamp(18px, 5vw, 22px);
+            font-weight: 800;
+            color: #4a148c;
+            text-shadow: 1px 1px 0 white;
+            margin-bottom: 10px;
+        }
 
         .reading-text {
             background: #fff9c4;
@@ -370,10 +358,18 @@
             text-align: left;
             margin: 10px auto;
             font-size: 15px;
+            font-weight: 600;
+            line-height: 1.6;
             max-width: 100%;
         }
 
-        .no-grade { font-style: italic; color: #4e342e; margin-top: 8px; font-size: 14px; }
+        .no-grade {
+            font-style: italic;
+            color: #4e342e;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -422,12 +418,12 @@
 
     <script>
         (function() {
-            // ====== НАСТРОЙКИ ДЛЯ GOOGLE ФОРМЫ (замените на свои) ======
+            // ====== НАСТРОЙКИ GOOGLE ФОРМЫ (замените на свои) ======
             const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/XXXXXXXXXXXXXXXXXXXXXXXX/formResponse';
-            const NAME_FIELD = 'entry.1000000';    // замените на entry ID для имени
-            const SCORE_FIELD = 'entry.2000000';   // замените на entry ID для результата
+            const NAME_FIELD = 'entry.1000000';    // замените
+            const SCORE_FIELD = 'entry.2000000';   // замените
 
-            // 6 вариантов вопросов (все предыдущие варианты)
+            // 6 вариантов вопросов
             const variants = [
                 {
                     questions: [
@@ -584,8 +580,8 @@
             let currentQuestions = [];
             let total = 20;
             let currentIndex = 0;
-            let userAnswers = [];
-            let questionStatus = [];
+            let userAnswers = new Array(total).fill(null);
+            let questionStatus = new Array(total).fill('unanswered');
 
             const welcomeSection = document.getElementById('welcomeSection');
             const mainContent = document.getElementById('mainContent');
@@ -691,12 +687,18 @@
             }
 
             function updateNavigationButtons() {
+                // проверяем, все ли вопросы отвечены
+                const allAnswered = questionStatus.every(s => s !== 'unanswered');
                 if (currentIndex === total - 1) {
                     nextBtn.style.display = 'none';
                     checkBtnFinal.style.display = 'inline-block';
                 } else {
                     nextBtn.style.display = 'inline-block';
                     checkBtnFinal.style.display = 'none';
+                }
+                // если все отвечены, показываем кнопку итога даже если не последний вопрос (но обычно она видна только на последнем)
+                if (allAnswered) {
+                    checkBtnFinal.style.display = 'inline-block';
                 }
             }
 
@@ -733,6 +735,8 @@
                 }
                 prevBtn.disabled = (currentIndex === 0);
                 updateNavigationButtons();
+
+                // анимация открытия
                 questionScreen.classList.remove('animate-question');
                 void questionScreen.offsetWidth;
                 questionScreen.classList.add('animate-question');
@@ -754,6 +758,12 @@
             }
 
             function showResults() {
+                // Дополнительная проверка, на всякий случай
+                if (questionStatus.some(s => s === 'unanswered')) {
+                    const unanswered = questionStatus.reduce((arr, s, i) => { if (s === 'unanswered') arr.push(i+1); return arr; }, []);
+                    alert(`Ты пропустил(а) вопросы: ${unanswered.join(', ')}. Ответь на них!`);
+                    return;
+                }
                 const correctCount = questionStatus.filter(s => s === 'correct').length;
                 const wrongCount = total - correctCount;
                 resultDisplay.textContent = `🏆 ${correctCount} из ${total} звёзд!`;
@@ -809,13 +819,7 @@
             document.getElementById('nameInput').addEventListener('keypress', e => { if (e.key === 'Enter') startQuiz(); });
             prevBtn.addEventListener('click', () => goToQuestion(currentIndex-1));
             nextBtn.addEventListener('click', () => goToQuestion(currentIndex+1));
-            checkBtnFinal.addEventListener('click', () => {
-                if (questionStatus.some(s => s === 'unanswered')) {
-                    alert('Ответь на все вопросы перед итогом!');
-                    return;
-                }
-                showResults();
-            });
+            checkBtnFinal.addEventListener('click', showResults);
             resetBtn.addEventListener('click', resetGame);
         })();
     </script>
