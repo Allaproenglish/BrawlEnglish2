@@ -2,33 +2,36 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Тренажёр Brawl English — мобильная версия</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Тренажёр Brawl English — для iPhone</title>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html, body {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
         body {
             font-family: 'Lilita One', cursive;
-            background-color: #3b0a6b; /* резервный цвет, если картинка не загрузится */
+            background: #3b0a6b; /* запасной цвет */
             background-image: url('https://i.pinimg.com/736x/cd/56/9b/cd569b65ab307352e0385e68f6b84eaf.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: scroll; /* на мобильных fixed может давать сбои */
+            background-attachment: scroll; /* важно для iOS */
+            display: -webkit-flex;
             display: flex;
+            -webkit-justify-content: center;
             justify-content: center;
+            -webkit-align-items: center;
             align-items: center;
-            min-height: 100vh;
             padding: 15px;
         }
 
@@ -45,42 +48,51 @@
 
         .container {
             max-width: 700px;
-            width: calc(100% - 30px); /* отступы по краям экрана */
-            background: rgba(20, 10, 50, 0.75);
+            width: calc(100% - 20px);
+            background: rgba(20, 10, 50, 0.85);
             border-radius: 30px;
             box-shadow: 0 15px 30px rgba(255, 200, 0, 0.4);
             padding: 25px 15px;
             border: 4px solid #ffcc00;
+            -webkit-animation: floatIn 0.8s ease;
             animation: floatIn 0.8s ease;
             margin: auto;
         }
 
+        @-webkit-keyframes floatIn {
+            0% { -webkit-transform: translateY(30px); opacity: 0; }
+            100% { -webkit-transform: translateY(0); opacity: 1; }
+        }
         @keyframes floatIn {
             0% { transform: translateY(30px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
 
+        @-webkit-keyframes chestOpen {
+            0% { -webkit-transform: scale(0.8) rotate(-3deg); opacity: 0; }
+            100% { -webkit-transform: scale(1) rotate(0); opacity: 1; }
+        }
         @keyframes chestOpen {
-            0% { transform: scale(0.7) rotate(-3deg); opacity: 0; }
-            50% { transform: scale(1.02); opacity: 1; }
-            100% { transform: scale(1) rotate(0); }
+            0% { transform: scale(0.8) rotate(-3deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
         }
 
         h1 {
             text-align: center;
             color: #ffcc00;
-            font-size: 2rem; /* адаптивный размер */
+            font-size: clamp(28px, 8vw, 36px);
             text-shadow: 2px 2px 0 #8b5cf6, 4px 4px 0 #4a0072;
             margin-bottom: 5px;
+            -webkit-text-stroke: 0.5px #fff;
         }
 
         .subtitle {
             text-align: center;
             color: #ffe082;
-            font-size: 1rem;
+            font-size: clamp(14px, 4vw, 18px);
             margin-bottom: 20px;
             background: rgba(138, 43, 226, 0.6);
-            padding: 6px 15px;
+            padding: 6px 20px;
             border-radius: 20px;
             display: inline-block;
             margin-left: auto;
@@ -101,7 +113,7 @@
 
         .welcome-section .hint {
             color: #ffecb3;
-            font-size: 1rem;
+            font-size: clamp(14px, 4vw, 18px);
             margin-bottom: 12px;
             text-shadow: 1px 1px 0 #4a148c;
         }
@@ -110,7 +122,7 @@
             padding: 12px 15px;
             border: 3px solid #ffcc00;
             border-radius: 30px;
-            font-size: 1rem;
+            font-size: 16px;
             width: 80%;
             max-width: 250px;
             text-align: center;
@@ -119,6 +131,8 @@
             font-family: 'Lilita One', cursive;
             outline: none;
             margin-bottom: 15px;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .welcome-section input:focus {
@@ -127,11 +141,12 @@
         }
 
         .start-btn {
+            background: -webkit-linear-gradient(top, #ffcc00, #ff9900);
             background: linear-gradient(180deg, #ffcc00, #ff9900);
             border: none;
             color: #3e1f00;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: clamp(20px, 5vw, 24px);
             padding: 12px 30px;
             border-radius: 30px;
             cursor: pointer;
@@ -139,16 +154,18 @@
             font-family: 'Lilita One', cursive;
             text-transform: uppercase;
             transition: 0.2s;
-            margin-top: 5px;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .start-btn:active {
+            -webkit-transform: translateY(3px);
             transform: translateY(3px);
             box-shadow: 0 3px 0 #b35900;
         }
 
         .greeting {
-            font-size: 1.5rem;
+            font-size: clamp(20px, 6vw, 28px);
             font-weight: bold;
             color: #ffd700;
             margin: 15px 0;
@@ -162,7 +179,7 @@
         .progress {
             text-align: center;
             color: #ffe082;
-            font-size: 1rem;
+            font-size: 16px;
             margin-bottom: 15px;
         }
 
@@ -179,6 +196,7 @@
         }
 
         .question-screen.animate-question {
+            -webkit-animation: chestOpen 0.4s ease;
             animation: chestOpen 0.4s ease;
         }
 
@@ -195,7 +213,7 @@
         }
 
         .question-text {
-            font-size: 1.2rem;
+            font-size: clamp(18px, 5vw, 22px);
             margin-bottom: 15px;
             color: white;
             text-shadow: 1px 1px 0 #000;
@@ -203,9 +221,12 @@
         }
 
         .options {
+            display: -webkit-flex;
             display: flex;
+            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
             gap: 10px;
+            -webkit-justify-content: center;
             justify-content: center;
         }
 
@@ -215,19 +236,28 @@
             border-radius: 20px;
             border: 2px solid #ff6f00;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: clamp(14px, 4vw, 18px);
             color: #3e1f00;
             text-shadow: 1px 1px 0 white;
+            display: -webkit-flex;
             display: flex;
+            -webkit-align-items: center;
             align-items: center;
             gap: 6px;
             box-shadow: 0 4px 0 #bf360c;
             transition: 0.2s;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        .options label:hover { background: #ffecb3; }
+        .options label:active { background: #ffecb3; }
         .options label.disabled { pointer-events: none; opacity: 0.7; }
-        .options input[type="radio"] { accent-color: #ff6d00; width: 18px; height: 18px; }
+        .options input[type="radio"] {
+            accent-color: #ff6d00;
+            width: 18px;
+            height: 18px;
+            pointer-events: none;
+        }
 
         .feedback {
             margin-top: 12px;
@@ -236,7 +266,7 @@
             padding: 10px;
             border-radius: 15px;
             color: white;
-            font-size: 0.9rem;
+            font-size: 14px;
             text-align: center;
         }
 
@@ -247,18 +277,22 @@
         .explanation-text { color: #ffcdd2; margin-top: 4px; }
 
         .nav-buttons {
+            display: -webkit-flex;
             display: flex;
+            -webkit-justify-content: center;
             justify-content: center;
             gap: 10px;
             margin: 15px 0;
+            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
         }
 
         .btn {
+            background: -webkit-linear-gradient(top, #ffcc00, #ff9900);
             background: linear-gradient(180deg, #ffcc00, #ff9900);
             border: none;
             color: #3e1f00;
-            font-size: 1rem;
+            font-size: clamp(16px, 4vw, 20px);
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
@@ -267,15 +301,37 @@
             text-transform: uppercase;
             transition: 0.2s;
             white-space: nowrap;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
-        .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #b35900; }
-        .btn:disabled { opacity: 0.5; transform: none; box-shadow: 0 4px 0 #7a4a00; }
-        .btn.check-btn { background: linear-gradient(180deg, #7c4dff, #651fff); color: white; }
-        .btn.reset-btn { background: linear-gradient(180deg, #9575cd, #512da8); color: white; }
+        .btn:active {
+            -webkit-transform: translateY(3px);
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #b35900;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            -webkit-transform: none;
+            transform: none;
+            box-shadow: 0 4px 0 #7a4a00;
+        }
+
+        .btn.check-btn {
+            background: -webkit-linear-gradient(top, #7c4dff, #651fff);
+            background: linear-gradient(180deg, #7c4dff, #651fff);
+            color: white;
+        }
+
+        .btn.reset-btn {
+            background: -webkit-linear-gradient(top, #9575cd, #512da8);
+            background: linear-gradient(180deg, #9575cd, #512da8);
+            color: white;
+        }
 
         .result {
-            font-size: 1.3rem;
+            font-size: clamp(20px, 6vw, 24px);
             font-weight: bold;
             color: #ffd700;
             background: #4a148c;
@@ -286,7 +342,12 @@
             box-shadow: 0 5px 0 #2e0b5e;
         }
 
-        .result-message { font-size: 1rem; color: #ffcc00; margin-top: 8px; text-align: center; }
+        .result-message {
+            font-size: clamp(16px, 5vw, 20px);
+            color: #ffcc00;
+            margin-top: 8px;
+            text-align: center;
+        }
 
         .reading-task {
             background: #ffb300;
@@ -299,7 +360,8 @@
             color: #3e1f00;
         }
 
-        .reading-task h2 { font-size: 1.2rem; color: #4a148c; text-shadow: 1px 1px 0 white; }
+        .reading-task h2 { font-size: clamp(18px, 5vw, 22px); color: #4a148c; text-shadow: 1px 1px 0 white; }
+
         .reading-text {
             background: #fff9c4;
             padding: 15px;
@@ -307,11 +369,11 @@
             display: inline-block;
             text-align: left;
             margin: 10px auto;
-            font-size: 0.9rem;
+            font-size: 15px;
             max-width: 100%;
         }
 
-        .no-grade { font-style: italic; color: #4e342e; margin-top: 8px; font-size: 0.8rem; }
+        .no-grade { font-style: italic; color: #4e342e; margin-top: 8px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -360,13 +422,401 @@
 
     <script>
         (function() {
-            // ... (весь JavaScript без изменений, включая 6 вариантов, 
-            // функции рендера, анимации, фейерверк, проверку, 
-            // и отправку в Google Форму, если были добавлены настройки)
-            // Здесь для краткости опущен, он должен быть скопирован из предыдущего полного кода
-            // ВАЖНО: вставьте сюда ВЕСЬ JavaScript из рабочей версии, включая variants,
-            // renderQuestion, showResults, startQuiz и т.д.
-            // Если нужно, я пришлю отдельно только JS-часть.
+            // ====== НАСТРОЙКИ ДЛЯ GOOGLE ФОРМЫ (замените на свои) ======
+            const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/XXXXXXXXXXXXXXXXXXXXXXXX/formResponse';
+            const NAME_FIELD = 'entry.1000000';    // замените на entry ID для имени
+            const SCORE_FIELD = 'entry.2000000';   // замените на entry ID для результата
+
+            // 6 вариантов вопросов (все предыдущие варианты)
+            const variants = [
+                {
+                    questions: [
+                        { question: "1. Какое слово означает «красный»?", options: ["red", "blue", "green", "yellow"], correct: 0, explanation: "Red — красный. Blue — синий, green — зелёный, yellow — жёлтый." },
+                        { question: "2. Как переводится «cat»?", options: ["собака", "кошка", "птица", "рыба"], correct: 1, explanation: "Cat — кошка. Dog — собака, bird — птица, fish — рыба." },
+                        { question: "3. What is your name? — ...", options: ["I am fine.", "My name is Ann.", "I am seven.", "Goodbye!"], correct: 1, explanation: "На вопрос об имени отвечаем My name is... I am fine — на How are you?" },
+                        { question: "4. I ... a pupil.", options: ["am", "is", "are", "can"], correct: 0, explanation: "С I всегда am. I am a pupil — Я ученик." },
+                        { question: "5. ... is a cat.", options: ["He", "She", "It", "I"], correct: 2, explanation: "Для животных и предметов говорим It." },
+                        { question: "6. Лишнее слово:", options: ["mother", "father", "cat", "sister"], correct: 2, explanation: "Cat — животное, остальные — семья." },
+                        { question: "7. I ... got a dog.", options: ["have", "has", "am", "can"], correct: 0, explanation: "I have got = у меня есть. Has — только с he/she/it." },
+                        { question: "8. «Я умею прыгать»:", options: ["I can jump.", "I like jump.", "I am jump.", "I have jump."], correct: 0, explanation: "Can + глагол без to." },
+                        { question: "9. How old are you? — ...", options: ["I am fine.", "I am seven.", "My name is Tom.", "I like cats."], correct: 1, explanation: "Сколько лет? — I am seven." },
+                        { question: "10. one cat, two ...", options: ["cats", "cat", "a cat", "the cat"], correct: 0, explanation: "Мн.ч. +s: cats." },
+                        { question: "11. The cat is ... the box (внутри)", options: ["on", "in", "under", "next to"], correct: 1, explanation: "In — внутри." },
+                        { question: "12. ... apple.", options: ["a", "an", "-", "the"], correct: 1, explanation: "an перед гласным звуком." },
+                        { question: "13. «Это моя мама»:", options: ["This is my mother.", "This is my father.", "That is a mother.", "It is mother."], correct: 0, explanation: "This is my mother." },
+                        { question: "14. Число 3:", options: ["two", "three", "four", "five"], correct: 1, explanation: "Three — три." },
+                        { question: "15. Can a fish swim?", options: ["Yes, it can.", "No, it can't.", "Yes, it is.", "No, it isn't."], correct: 0, explanation: "Yes, it can." },
+                        { question: "16. She ... my sister.", options: ["am", "is", "are", "can"], correct: 1, explanation: "She is." },
+                        { question: "17. «friend» — это:", options: ["друг", "мама", "папа", "сестра"], correct: 0, explanation: "Friend — друг." },
+                        { question: "18. ... name is Tom. He is a boy.", options: ["His", "Her", "My", "Your"], correct: 0, explanation: "Tom — мальчик → his." },
+                        { question: "19. «большой»:", options: ["small", "big", "red", "good"], correct: 1, explanation: "Big — большой." },
+                        { question: "20. Where are you from?", options: ["I am from Russia.", "I am fine.", "I am seven.", "My name is Ben."], correct: 0, explanation: "Откуда ты? — I am from Russia." }
+                    ],
+                    readingHTML: `<strong>My Family</strong><br>Hello! My name is <strong>{name}</strong>. I am from Russia.<br>I have got a mother, a father and a sister.<br>My mother is kind. My father is strong.<br>My sister is little. I love my family.`
+                },
+                {
+                    questions: [
+                        { question: "1. Выбери правильный перевод: «синий»", options: ["red", "blue", "green", "yellow"], correct: 1, explanation: "Blue — синий." },
+                        { question: "2. Как будет «собака»?", options: ["cat", "dog", "bird", "fish"], correct: 1, explanation: "Dog — собака." },
+                        { question: "3. Вставь слово: She ... a teacher.", options: ["am", "is", "are", "can"], correct: 1, explanation: "С she используется is." },
+                        { question: "4. Выбери правильный артикль: ... elephant.", options: ["a", "an", "-", "the"], correct: 1, explanation: "an перед гласным." },
+                        { question: "5. Какое слово означает «зелёный»?", options: ["red", "blue", "green", "yellow"], correct: 2, explanation: "Green — зелёный." },
+                        { question: "6. Лишнее слово:", options: ["apple", "banana", "dog", "orange"], correct: 2, explanation: "Dog — животное." },
+                        { question: "7. He ... got a ball.", options: ["have", "has", "am", "can"], correct: 1, explanation: "He has got." },
+                        { question: "8. «Я люблю читать»:", options: ["I like read.", "I like to read.", "I can read.", "I am read."], correct: 1, explanation: "Like + to read." },
+                        { question: "9. Where are you from? — ...", options: ["I am from Russia.", "I am fine.", "I am seven.", "My name is Tom."], correct: 0, explanation: "Откуда ты?" },
+                        { question: "10. one dog, two ...", options: ["dogs", "dog", "a dog", "the dog"], correct: 0, explanation: "Мн.ч. dogs." },
+                        { question: "11. The book is ... the table (на).", options: ["on", "in", "under", "next to"], correct: 0, explanation: "On — на поверхности." },
+                        { question: "12. ... cat is black.", options: ["A", "An", "The", "-"], correct: 2, explanation: "Определённый the." },
+                        { question: "13. «Это мой папа»", options: ["This is my father.", "This is my mother.", "That is a father.", "It is father."], correct: 0, explanation: "Father — папа." },
+                        { question: "14. Число 5:", options: ["four", "five", "six", "seven"], correct: 1, explanation: "Five." },
+                        { question: "15. Can you swim? — ...", options: ["Yes, I can.", "No, I can't.", "Yes, I am.", "No, I am not."], correct: 0, explanation: "Yes, I can." },
+                        { question: "16. They ... pupils.", options: ["am", "is", "are", "can"], correct: 2, explanation: "They are." },
+                        { question: "17. «mother» — это:", options: ["мама", "папа", "сестра", "брат"], correct: 0, explanation: "Mother — мама." },
+                        { question: "18. ... name is Kate. She is a girl.", options: ["His", "Her", "My", "Your"], correct: 1, explanation: "Девочка → her." },
+                        { question: "19. «маленький»:", options: ["big", "small", "red", "good"], correct: 1, explanation: "Small." },
+                        { question: "20. What is it? — ... a cat.", options: ["It is", "This is", "That is", "It"], correct: 0, explanation: "It is a cat." }
+                    ],
+                    readingHTML: `<strong>My Family</strong><br>Hi! I am <strong>{name}</strong>. I am from Russia.<br>I have got a mother, a father and a brother.<br>My mother is beautiful. My father is funny.<br>My brother is small. We are a happy family.`
+                },
+                {
+                    questions: [
+                        { question: "1. Какое слово означает «жёлтый»?", options: ["red", "blue", "green", "yellow"], correct: 3, explanation: "Yellow." },
+                        { question: "2. Как переводится «bird»?", options: ["собака", "кошка", "птица", "рыба"], correct: 2, explanation: "Bird — птица." },
+                        { question: "3. What is your name? — ...", options: ["I am fine.", "My name is Ben.", "I am eight.", "Goodbye!"], correct: 1, explanation: "My name is ..." },
+                        { question: "4. You ... my friend.", options: ["am", "is", "are", "can"], correct: 2, explanation: "You are." },
+                        { question: "5. ... is a dog.", options: ["He", "She", "It", "I"], correct: 2, explanation: "It." },
+                        { question: "6. Лишнее слово:", options: ["red", "cat", "green", "blue"], correct: 1, explanation: "Cat — животное." },
+                        { question: "7. We ... got a house.", options: ["have", "has", "am", "can"], correct: 0, explanation: "We have got." },
+                        { question: "8. «Я умею петь»:", options: ["I can sing.", "I like sing.", "I am sing.", "I have sing."], correct: 0, explanation: "Can sing." },
+                        { question: "9. How old are you? — ...", options: ["I am eight.", "I am fine.", "My name is Ann.", "I like dogs."], correct: 0, explanation: "I am eight." },
+                        { question: "10. one fox, two ...", options: ["foxes", "foxs", "fox", "a fox"], correct: 0, explanation: "Fox → foxes." },
+                        { question: "11. The cat is ... the chair (под).", options: ["on", "in", "under", "next to"], correct: 2, explanation: "Under." },
+                        { question: "12. ... egg.", options: ["a", "an", "-", "the"], correct: 1, explanation: "an." },
+                        { question: "13. «Это мой дом»:", options: ["This is my house.", "That is my house.", "It is house.", "This is your house."], correct: 0, explanation: "This is my house." },
+                        { question: "14. Число 8:", options: ["six", "seven", "eight", "nine"], correct: 2, explanation: "Eight." },
+                        { question: "15. Can a cat climb? — ...", options: ["Yes, it can.", "No, it can't.", "Yes, it is.", "No, it isn't."], correct: 0, explanation: "Yes, it can." },
+                        { question: "16. I ... happy.", options: ["am", "is", "are", "can"], correct: 0, explanation: "I am." },
+                        { question: "17. «brother» — это:", options: ["брат", "сестра", "мама", "папа"], correct: 0, explanation: "Brother — брат." },
+                        { question: "18. ... name is Ann. She is a girl.", options: ["His", "Her", "My", "Your"], correct: 1, explanation: "Her." },
+                        { question: "19. «хороший»:", options: ["bad", "good", "big", "small"], correct: 1, explanation: "Good." },
+                        { question: "20. Where is the cat? — ... on the bed.", options: ["It is", "He is", "She is", "They are"], correct: 0, explanation: "It is on the bed." }
+                    ],
+                    readingHTML: `<strong>My Family</strong><br>Hello! My name is <strong>{name}</strong>.<br>I have got a family: a mother, a father and a grandmother.<br>My mother is a doctor. My father is a driver.<br>My grandmother is very kind. I love them!`
+                },
+                {
+                    questions: [
+                        { question: "1. «белый» — это:", options: ["black", "white", "brown", "grey"], correct: 1, explanation: "White." },
+                        { question: "2. «fish» переводится как:", options: ["птица", "рыба", "кошка", "собака"], correct: 1, explanation: "Fish — рыба." },
+                        { question: "3. How are you? — ...", options: ["I am fine.", "My name is Tom.", "I am seven.", "Goodbye."], correct: 0, explanation: "I am fine." },
+                        { question: "4. She ... a doctor.", options: ["am", "is", "are", "can"], correct: 1, explanation: "She is." },
+                        { question: "5. ... is a book.", options: ["He", "She", "It", "They"], correct: 2, explanation: "It." },
+                        { question: "6. Лишнее слово:", options: ["mother", "father", "sister", "dog"], correct: 3, explanation: "Dog — животное." },
+                        { question: "7. He ... got a sister.", options: ["have", "has", "am", "can"], correct: 1, explanation: "He has." },
+                        { question: "8. «Я люблю прыгать»:", options: ["I like jump.", "I like to jump.", "I can jump.", "I am jump."], correct: 1, explanation: "Like to jump." },
+                        { question: "9. Where are you from? — ...", options: ["I am from Russia.", "I am fine.", "I am seven.", "My name is Ben."], correct: 0, explanation: "I am from Russia." },
+                        { question: "10. one box, two ...", options: ["boxs", "boxes", "box", "a box"], correct: 1, explanation: "Box → boxes." },
+                        { question: "11. The ball is ... the table (на).", options: ["in", "on", "under", "behind"], correct: 1, explanation: "On." },
+                        { question: "12. ... apple is red.", options: ["A", "An", "The", "-"], correct: 2, explanation: "The." },
+                        { question: "13. «Это моя сестра»:", options: ["This is my sister.", "This is my brother.", "That is a sister.", "It is sister."], correct: 0, explanation: "Sister." },
+                        { question: "14. Число 10:", options: ["nine", "ten", "eleven", "twelve"], correct: 1, explanation: "Ten." },
+                        { question: "15. Can a bird fly? — ...", options: ["Yes, it can.", "No, it can't.", "Yes, it is.", "No, it isn't."], correct: 0, explanation: "Yes, it can." },
+                        { question: "16. We ... friends.", options: ["am", "is", "are", "can"], correct: 2, explanation: "We are." },
+                        { question: "17. «sister» — это:", options: ["сестра", "брат", "мама", "папа"], correct: 0, explanation: "Сестра." },
+                        { question: "18. ... name is Mike. He is a boy.", options: ["His", "Her", "My", "Your"], correct: 0, explanation: "His." },
+                        { question: "19. «чёрный»:", options: ["white", "black", "green", "blue"], correct: 1, explanation: "Black." },
+                        { question: "20. What colour is the sky? — ... blue.", options: ["It is", "He is", "She is", "They are"], correct: 0, explanation: "It is blue." }
+                    ],
+                    readingHTML: `<strong>My Family</strong><br>Hi! I am <strong>{name}</strong>. I am from Russia.<br>I have got a father, a mother and a grandfather.<br>My father is tall. My mother is nice.<br>My grandfather is old but strong. We are all friends.`
+                },
+                {
+                    questions: [
+                        { question: "1. Выбери перевод: «чёрный»", options: ["black", "white", "red", "green"], correct: 0, explanation: "Black." },
+                        { question: "2. «hamster» — это:", options: ["хомяк", "кролик", "попугай", "черепаха"], correct: 0, explanation: "Hamster." },
+                        { question: "3. What is your name? — ...", options: ["My name is Lena.", "I am fine.", "I am six.", "Goodbye."], correct: 0, explanation: "My name is..." },
+                        { question: "4. It ... a big house.", options: ["am", "is", "are", "can"], correct: 1, explanation: "It is." },
+                        { question: "5. Девочка: ... is a girl.", options: ["He", "She", "It", "I"], correct: 1, explanation: "She." },
+                        { question: "6. Лишнее слово:", options: ["cat", "dog", "hamster", "apple"], correct: 3, explanation: "Apple." },
+                        { question: "7. My sister ... got a doll.", options: ["have", "has", "am", "can"], correct: 1, explanation: "Has." },
+                        { question: "8. «Я умею бегать»:", options: ["I can run.", "I like run.", "I am run.", "I have run."], correct: 0, explanation: "Can run." },
+                        { question: "9. How old are you? — ...", options: ["I am six.", "I am fine.", "My name is Tom.", "I like cats."], correct: 0, explanation: "I am six." },
+                        { question: "10. one baby, two ...", options: ["babys", "babies", "babyes", "baby"], correct: 1, explanation: "Babies." },
+                        { question: "11. The dog is ... the sofa (под).", options: ["on", "in", "under", "next to"], correct: 2, explanation: "Under." },
+                        { question: "12. ... umbrella.", options: ["a", "an", "-", "the"], correct: 1, explanation: "an." },
+                        { question: "13. «Это твой карандаш?»:", options: ["This is your pencil?", "This is my pencil?", "That is a pencil?", "It is pencil?"], correct: 0, explanation: "Your pencil?" },
+                        { question: "14. Число 2:", options: ["one", "two", "three", "four"], correct: 1, explanation: "Two." },
+                        { question: "15. Can a frog jump? — ...", options: ["Yes, it can.", "No, it can't.", "Yes, it is.", "No, it isn't."], correct: 0, explanation: "Yes." },
+                        { question: "16. He ... my brother.", options: ["am", "is", "are", "can"], correct: 1, explanation: "He is." },
+                        { question: "17. «father» — это:", options: ["папа", "мама", "брат", "сестра"], correct: 0, explanation: "Father." },
+                        { question: "18. ... name is Olga. She is a teacher.", options: ["His", "Her", "My", "Your"], correct: 1, explanation: "Her." },
+                        { question: "19. «длинный»:", options: ["short", "long", "big", "small"], correct: 1, explanation: "Long." },
+                        { question: "20. What is it? — ... a pencil case.", options: ["It is", "This is", "That is", "It"], correct: 0, explanation: "It is." }
+                    ],
+                    readingHTML: `<strong>My Family</strong><br>Hello! My name is <strong>{name}</strong>. I am from Russia.<br>I have got a mother, a father and a sister.<br>My mother is a singer. My father is a pilot.<br>My sister is funny. We are very happy.`
+                },
+                {
+                    questions: [
+                        { question: "1. «серый» — это:", options: ["grey", "brown", "pink", "purple"], correct: 0, explanation: "Grey." },
+                        { question: "2. «rabbit» переводится как:", options: ["кошка", "собака", "кролик", "хомяк"], correct: 2, explanation: "Кролик." },
+                        { question: "3. What is your name? — ...", options: ["My name is Dima.", "I am fine.", "I am nine.", "Goodbye."], correct: 0, explanation: "My name is..." },
+                        { question: "4. These ... my toys.", options: ["am", "is", "are", "can"], correct: 2, explanation: "These are." },
+                        { question: "5. ... is a big elephant.", options: ["He", "She", "It", "They"], correct: 2, explanation: "It." },
+                        { question: "6. Лишнее слово:", options: ["banana", "apple", "orange", "cat"], correct: 3, explanation: "Cat." },
+                        { question: "7. My brother ... got a bike.", options: ["have", "has", "am", "can"], correct: 1, explanation: "Has got." },
+                        { question: "8. «Я умею плавать»:", options: ["I can swim.", "I like swim.", "I am swim.", "I have swim."], correct: 0, explanation: "Can swim." },
+                        { question: "9. How old are you? — ...", options: ["I am nine.", "I am fine.", "My name is Tom.", "I like dogs."], correct: 0, explanation: "I am nine." },
+                        { question: "10. one child, two ...", options: ["childs", "children", "childrens", "child"], correct: 1, explanation: "Children." },
+                        { question: "11. The pencil is ... the bag (внутри).", options: ["on", "in", "under", "behind"], correct: 1, explanation: "In." },
+                        { question: "12. ... hour.", options: ["a", "an", "-", "the"], correct: 1, explanation: "an hour." },
+                        { question: "13. «Это его собака»:", options: ["This is his dog.", "This is her dog.", "That is a dog.", "It is dog."], correct: 0, explanation: "His dog." },
+                        { question: "14. Число 1:", options: ["two", "three", "one", "four"], correct: 2, explanation: "One." },
+                        { question: "15. Can a hen fly? — ...", options: ["Yes, it can.", "No, it can't.", "Yes, it is.", "No, it isn't."], correct: 1, explanation: "No, it can't." },
+                        { question: "16. My mother ... a good cook.", options: ["am", "is", "are", "can"], correct: 1, explanation: "My mother is." },
+                        { question: "17. «grandmother» — это:", options: ["бабушка", "дедушка", "мама", "тётя"], correct: 0, explanation: "Бабушка." },
+                        { question: "18. ... name is Sasha. He is a boy.", options: ["His", "Her", "My", "Your"], correct: 0, explanation: "His." },
+                        { question: "19. «короткий»:", options: ["long", "short", "big", "small"], correct: 1, explanation: "Short." },
+                        { question: "20. What colour is the grass? — ... green.", options: ["It is", "He is", "She is", "They are"], correct: 0, explanation: "It is green." }
+                    ],
+                    readingHTML: `<strong>My Family</strong><br>Hello! My name is <strong>{name}</strong>. I am from Russia.<br>I have got a mother, a father, a brother and a dog.<br>My mother is a teacher. My father is a fireman.<br>My brother and I like to play football. We are a big family.`
+                }
+            ];
+
+            let currentQuestions = [];
+            let total = 20;
+            let currentIndex = 0;
+            let userAnswers = [];
+            let questionStatus = [];
+
+            const welcomeSection = document.getElementById('welcomeSection');
+            const mainContent = document.getElementById('mainContent');
+            const greetingDiv = document.getElementById('greeting');
+            const readingTextDiv = document.getElementById('readingText');
+            const readingTask = document.getElementById('readingTask');
+            const questionScreen = document.getElementById('questionScreen');
+            const questionText = document.getElementById('questionText');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const feedbackBox = document.getElementById('feedbackBox');
+            const correctSpan = feedbackBox.querySelector('.correct-answer-text');
+            const explanationSpan = feedbackBox.querySelector('.explanation-text');
+            const questionCounter = document.getElementById('questionCounter');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const checkBtnFinal = document.getElementById('checkBtnFinal');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultDisplay = document.getElementById('resultDisplay');
+            const resultMessage = document.getElementById('resultMessage');
+            const canvas = document.getElementById('fireworksCanvas');
+            const ctx = canvas.getContext('2d');
+
+            let fireworksActive = false, animationId = null, particles = [];
+
+            function escapeHtml(text) {
+                return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            }
+
+            function chooseRandomVariant() {
+                const idx = Math.floor(Math.random() * variants.length);
+                currentQuestions = variants[idx].questions.slice();
+                total = currentQuestions.length;
+                window.currentReadingHTML = variants[idx].readingHTML;
+            }
+
+            function startFireworks() {
+                canvas.style.display = 'block';
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                fireworksActive = true; particles = [];
+                function createFirework() {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height * 0.6;
+                    const colors = ['#ff4081','#ff80ab','#ffd740','#69f0ae','#40c4ff','#b388ff','#ff6e40'];
+                    for (let i = 0; i < 50; i++) {
+                        particles.push({ x, y, vx: (Math.random()-0.5)*6, vy: (Math.random()-0.5)*6, life: 1, color: colors[Math.floor(Math.random()*colors.length)], size: Math.random()*4+2 });
+                    }
+                }
+                function animate() {
+                    if (!fireworksActive) return;
+                    ctx.clearRect(0,0,canvas.width,canvas.height);
+                    particles = particles.filter(p => p.life > 0.02);
+                    particles.forEach(p => {
+                        p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.life -= 0.015;
+                        ctx.fillStyle = p.color; ctx.globalAlpha = p.life;
+                        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                    });
+                    ctx.globalAlpha = 1;
+                    if (Math.random() < 0.15 && fireworksActive) createFirework();
+                    animationId = requestAnimationFrame(animate);
+                }
+                animate();
+                setTimeout(stopFireworks, 6000);
+            }
+
+            function stopFireworks() {
+                fireworksActive = false;
+                if (animationId) cancelAnimationFrame(animationId);
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                canvas.style.display = 'none'; particles = [];
+            }
+
+            function lockQuestion() {
+                const radios = document.getElementsByName(`q${currentIndex}`);
+                radios.forEach(r => r.disabled = true);
+                optionsContainer.querySelectorAll('label').forEach(l => l.classList.add('disabled'));
+            }
+
+            function showFeedback(correctIdx, explanation) {
+                correctSpan.textContent = `✅ Правильный ответ: ${currentQuestions[currentIndex].options[correctIdx]}`;
+                explanationSpan.textContent = `💡 ${explanation}`;
+                feedbackBox.style.display = 'block';
+            }
+
+            function hideFeedback() { feedbackBox.style.display = 'none'; }
+
+            function onAnswerSelected(selectedIdx) {
+                if (questionStatus[currentIndex] !== 'unanswered') return;
+                const q = currentQuestions[currentIndex];
+                const isCorrect = (selectedIdx === q.correct);
+                userAnswers[currentIndex] = selectedIdx;
+                questionStatus[currentIndex] = isCorrect ? 'correct' : 'wrong';
+                lockQuestion();
+                if (isCorrect) {
+                    questionScreen.classList.add('correct-highlight');
+                    questionScreen.classList.remove('wrong-highlight');
+                } else {
+                    questionScreen.classList.add('wrong-highlight');
+                    questionScreen.classList.remove('correct-highlight');
+                }
+                showFeedback(q.correct, q.explanation);
+                updateNavigationButtons();
+            }
+
+            function updateNavigationButtons() {
+                if (currentIndex === total - 1) {
+                    nextBtn.style.display = 'none';
+                    checkBtnFinal.style.display = 'inline-block';
+                } else {
+                    nextBtn.style.display = 'inline-block';
+                    checkBtnFinal.style.display = 'none';
+                }
+            }
+
+            function renderQuestion() {
+                const q = currentQuestions[currentIndex];
+                questionText.textContent = q.question;
+                questionCounter.textContent = `Вопрос ${currentIndex+1} из ${total}`;
+                optionsContainer.innerHTML = '';
+                const status = questionStatus[currentIndex];
+                q.options.forEach((opt, idx) => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio'; input.name = `q${currentIndex}`; input.value = idx;
+                    input.checked = (userAnswers[currentIndex] === idx);
+                    if (status !== 'unanswered') { input.disabled = true; label.classList.add('disabled'); }
+                    input.addEventListener('change', (e) => {
+                        if (status !== 'unanswered') return;
+                        onAnswerSelected(parseInt(e.target.value));
+                    });
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(' ' + opt));
+                    optionsContainer.appendChild(label);
+                });
+                questionScreen.classList.remove('correct-highlight', 'wrong-highlight');
+                hideFeedback();
+                if (status === 'correct') {
+                    questionScreen.classList.add('correct-highlight');
+                    showFeedback(q.correct, q.explanation);
+                    lockQuestion();
+                } else if (status === 'wrong') {
+                    questionScreen.classList.add('wrong-highlight');
+                    showFeedback(q.correct, q.explanation);
+                    lockQuestion();
+                }
+                prevBtn.disabled = (currentIndex === 0);
+                updateNavigationButtons();
+                questionScreen.classList.remove('animate-question');
+                void questionScreen.offsetWidth;
+                questionScreen.classList.add('animate-question');
+            }
+
+            function goToQuestion(index) {
+                if (index < 0 || index >= total) return;
+                currentIndex = index;
+                renderQuestion();
+            }
+
+            async function sendResultsToGoogle(name, score) {
+                const formData = new FormData();
+                formData.append(NAME_FIELD, name);
+                formData.append(SCORE_FIELD, score);
+                try {
+                    await fetch(GOOGLE_FORM_URL, { method: 'POST', body: formData, mode: 'no-cors' });
+                } catch (error) {}
+            }
+
+            function showResults() {
+                const correctCount = questionStatus.filter(s => s === 'correct').length;
+                const wrongCount = total - correctCount;
+                resultDisplay.textContent = `🏆 ${correctCount} из ${total} звёзд!`;
+                resultDisplay.style.display = 'inline-block';
+                let message = '';
+                if (wrongCount <= 3) message = '🌟 Отличная работа!';
+                else if (wrongCount <= 8) message = '👍 Неплохо!';
+                else message = '💪 Попробуй ещё раз!';
+                resultMessage.textContent = message;
+                readingTask.style.display = 'block';
+                startFireworks();
+                const name = document.getElementById('nameInput')?.value?.trim();
+                if (name && /^[a-zA-Z]+$/.test(name)) {
+                    sendResultsToGoogle(name, `${correctCount} из ${total}`);
+                }
+            }
+
+            function resetGame() {
+                stopFireworks();
+                chooseRandomVariant();
+                userAnswers = new Array(total).fill(null);
+                questionStatus = new Array(total).fill('unanswered');
+                resultDisplay.style.display = 'none';
+                resultMessage.textContent = '';
+                currentIndex = 0;
+                const name = document.getElementById('nameInput')?.value?.trim();
+                if (name && /^[a-zA-Z]+$/.test(name)) {
+                    readingTextDiv.innerHTML = window.currentReadingHTML.replace('{name}', escapeHtml(name));
+                }
+                readingTask.style.display = 'none';
+                renderQuestion();
+            }
+
+            function startQuiz() {
+                const name = document.getElementById('nameInput').value.trim();
+                if (!name) return alert('Введи имя!');
+                if (!/^[a-zA-Z]+$/.test(name)) return alert('Только английские буквы!');
+                const safe = escapeHtml(name);
+                greetingDiv.innerHTML = `👋 Привет, <strong>${safe}</strong>! Сосредоточься, читай внимательно!`;
+                greetingDiv.style.display = 'block';
+                welcomeSection.style.display = 'none';
+                chooseRandomVariant();
+                readingTextDiv.innerHTML = window.currentReadingHTML.replace('{name}', safe);
+                mainContent.style.display = 'block';
+                userAnswers = new Array(total).fill(null);
+                questionStatus = new Array(total).fill('unanswered');
+                readingTask.style.display = 'none';
+                currentIndex = 0;
+                renderQuestion();
+            }
+
+            document.getElementById('startBtn').addEventListener('click', startQuiz);
+            document.getElementById('nameInput').addEventListener('keypress', e => { if (e.key === 'Enter') startQuiz(); });
+            prevBtn.addEventListener('click', () => goToQuestion(currentIndex-1));
+            nextBtn.addEventListener('click', () => goToQuestion(currentIndex+1));
+            checkBtnFinal.addEventListener('click', () => {
+                if (questionStatus.some(s => s === 'unanswered')) {
+                    alert('Ответь на все вопросы перед итогом!');
+                    return;
+                }
+                showResults();
+            });
+            resetBtn.addEventListener('click', resetGame);
         })();
     </script>
 </body>
